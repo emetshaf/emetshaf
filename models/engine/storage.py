@@ -1,12 +1,27 @@
 import models
 from models.base_model import Base, BaseModel
+from models.audiobook import AudioBook
+from models.author import Author
+from models.book import Book
+from models.language import Language
+from models.narrator import Narrator
+from models.review import Review
 from models.user import User
+from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 
-classes = {'User': User}
+classes = {
+    'AudioBook': AudioBook,
+    'Author': Author,
+    'Book': Book,
+    'Language': Language,
+    'Narrator': Narrator,
+    'Review': Review,
+    'User': User
+    }
 
 
 class Storage:
@@ -14,13 +29,17 @@ class Storage:
     __session = None
 
     def __init__(self):
-        user = 'emetshaf_admin'
-        pwd = 'emetshaf_admin_pwd'
-        host = 'localhost'
-        db = 'emetshaf'
+        EMETSHAF_MYSQL_USER = getenv('EMETSHAF_MYSQL_USER')
+        EMETSHAF_MYSQL_PWD = getenv('EMETSHAF_MYSQL_PWD')
+        EMETSHAF_MYSQL_HOST = getenv('EMETSHAF_MYSQL_HOST')
+        EMETSHAF_MYSQL_DB = getenv('EMETSHAF_MYSQL_DB')
+        EMETSHAF_ENV = getenv('EMETSHAF_ENV')
 
         self.__engine = create_engine(
-            'mysql+mysqldb://{}:{}@{}/{}'.format(user, pwd, host, db))
+            'mysql+mysqldb://{}:{}@{}/{}'.format(EMETSHAF_MYSQL_USER, EMETSHAF_MYSQL_PWD, EMETSHAF_MYSQL_HOST, EMETSHAF_MYSQL_DB))
+
+        if EMETSHAF_ENV == "test":
+            Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         dict = {}
@@ -59,6 +78,16 @@ class Storage:
         for value in all_cls.values():
             if (value.id == id):
                 return value
+
+        return None
+
+    def getAuth(self, username, password):
+
+        all_cls = models.storage.all(User)
+        for value in all_cls.values():
+            if (value.username == username):
+                if (value.password == password):
+                    return True
 
         return None
 
