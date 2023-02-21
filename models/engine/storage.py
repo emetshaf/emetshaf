@@ -1,104 +1,138 @@
-import models
-from models.base_model import Base, BaseModel
-from models.audiobook import AudioBook
-from models.author import Author
-from models.book import Book
-from models.language import Language
-from models.narrator import Narrator
-from models.review import Review
-from models.user import User
-from os import getenv
-import sqlalchemy
-from sqlalchemy import create_engine
+"""
+Database engine
+"""
+
+from os import environ
+from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
+from models.base_model import Base
+from models import author, base_model, book, language, review, user
 
-
-classes = {
-    'AudioBook': AudioBook,
-    'Author': Author,
-    'Book': Book,
-    'Language': Language,
-    'Narrator': Narrator,
-    'Review': Review,
-    'User': User
-    }
+EMETSHAF_MYSQL_USER = environ.get('EMETSHAF_MYSQL_USER')
+EMETSHAF_MYSQL_PWD = environ.get('EMETSHAF_MYSQL_PWD')
+EMETSHAF_MYSQL_HOST = environ.get('EMETSHAF_MYSQL_HOST')
+EMETSHAF_MYSQL_DB = environ.get('EMETSHAF_MYSQL_DB')
+EMETSHAF_ENV = environ.get("EMETSHAF_ENV")
 
 
 class Storage:
+    """
+        handles long term storage of all class instances
+    """
+    CNC = {
+        'Author': author.Author,
+        'Book': book.Book,
+        'BookFile': book.BookFile,
+        'Language': language.Language,
+        'Review': review.Review,
+        'User': user.User,
+        'BlacklistToken': user.BlacklistToken
+    }
+
+    """
+        handles storage for database
+    """
     __engine = None
     __session = None
 
     def __init__(self):
-        EMETSHAF_MYSQL_USER = getenv('EMETSHAF_MYSQL_USER')
-        EMETSHAF_MYSQL_PWD = getenv('EMETSHAF_MYSQL_PWD')
-        EMETSHAF_MYSQL_HOST = getenv('EMETSHAF_MYSQL_HOST')
-        EMETSHAF_MYSQL_DB = getenv('EMETSHAF_MYSQL_DB')
-        EMETSHAF_ENV = getenv('EMETSHAF_ENV')
-
+        """
+            creates the engine self.__engine
+        """
         self.__engine = create_engine(
-            'mysql+mysqldb://{}:{}@{}/{}'.format(EMETSHAF_MYSQL_USER, EMETSHAF_MYSQL_PWD, EMETSHAF_MYSQL_HOST, EMETSHAF_MYSQL_DB))
-
-        if EMETSHAF_ENV == "test":
+            'mysql+mysqldb://{}:{}@{}/{}'
+            .format(EMETSHAF_MYSQL_USER, EMETSHAF_MYSQL_PWD, EMETSHAF_MYSQL_HOST, EMETSHAF_MYSQL_DB)
+        )
+        if EMETSHAF_ENV == 'test':
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        dict = {}
-        for clss in classes:
-            if cls is None or cls is classes[clss] or cls is clss:
-                objs = self.__session.query(classes[clss]).all()
-                for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
-                    dict[key] = obj
-        return dict
+        """
+           returns a dictionary of all objects
+        """
+        obj_dict = {}
+        if cls is not None:
+            a_query = self.__session.query(Storage.CNC[cls])
+            for obj in a_query:
+                obj_ref = "{}.{}".format(type(obj).__name__, obj.id)
+                if cls == 'Book' and obj.authors and obj.book_files and obj.reviews:
+                    pass
+                obj_dict[obj_ref] = obj
+            return obj_dict
+
+        for c in Storage.CNC.values():
+            a_query = self.__session.query(c)
+            for obj in a_query:
+                obj_ref = "{}.{}".format(type(obj).__name__, obj.id)
+                obj_dict[obj_ref] = obj
+        return obj_dict
 
     def new(self, obj):
+        """
+            adds objects to current database session
+        """
         self.__session.add(obj)
 
     def save(self):
+        """
+            commits all changes of current database session
+        """
         self.__session.commit()
 
+    def rollback_session(self):
+        """
+            rollsback a session in the event of an exception
+        """
+        self.__session.rollback()
+
     def delete(self, obj=None):
+        """
+            deletes obj from current database session if not None
+        """
         if obj:
             self.__session.delete(obj)
+            self.save()
+
+    def delete_all(self):
+        """
+           deletes all stored objects, for testing purposes
+        """
+        for c in Storage.CNC.values():
+            a_query = self.__session.query(c)
+            all_objs = [obj for obj in a_query]
+            for obj in range(len(all_objs)):
+                to_delete = all_objs.pop(0)
+                to_delete.delete()
+        self.save()
 
     def reload(self):
+        """
+           creates all tables in database & session from engine
+        """
         Base.metadata.create_all(self.__engine)
-        sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(sess_factory)
-        self.__session = Session
+        self.__session = scoped_session(
+            sessionmaker(
+                bind=self.__engine,
+                expire_on_commit=False))
 
     def close(self):
+        """
+            calls remove() on private session attribute (self.session)
+        """
         self.__session.remove()
 
     def get(self, cls, id):
-        if cls not in classes.values():
-            return None
-
-        all_cls = models.storage.all(cls)
-        for value in all_cls.values():
-            if (value.id == id):
-                return value
-
-        return None
-
-    def getAuth(self, username, password):
-
-        all_cls = models.storage.all(User)
-        for value in all_cls.values():
-            if (value.username == username):
-                if (value.password == password):
-                    return True
-
+        """
+            retrieves one object based on class name and id
+        """
+        if cls and id:
+            fetch = "{}.{}".format(cls, id)
+            all_obj = self.all(cls)
+            return all_obj.get(fetch)
         return None
 
     def count(self, cls=None):
-        all_class = classes.values()
-
-        if not cls:
-            count = 0
-            for clas in all_class:
-                count += len(models.storage.all(clas).values())
-        else:
-            count = len(models.storage.all(cls).values())
-
-        return count
+        """
+            returns the count of all objects in storage
+        """
+        return (len(self.all(cls)))

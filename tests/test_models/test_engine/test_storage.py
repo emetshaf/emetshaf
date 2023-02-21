@@ -2,12 +2,12 @@
 """
 import inspect
 import models
-from models.base_model import BaseModel
+from models.engine.storage import Storage
 import pycodestyle
 import unittest
 
 
-class TestBaseModelDocs(unittest.TestCase):
+class TestStorage(unittest.TestCase):
     """_summary_
     """
     @classmethod
@@ -15,13 +15,13 @@ class TestBaseModelDocs(unittest.TestCase):
         """_summary_
         """
         self.all_funcs = inspect.getmembers(
-            BaseModel, inspect.isfunction)
+            Storage, inspect.isfunction)
 
     def test_pep(self):
         """_summary_
         """
-        for path in ['models/base_model.py',
-                     'tests/test_models/test_base_model.py']:
+        for path in ['models/engine/storage.py',
+                     'tests/test_models/test_engine/test_storage.py']:
             with self.subTest(path=path):
                 errors = pycodestyle.Checker(path).check_all()
                 self.assertEqual(errors, 0)
@@ -29,20 +29,28 @@ class TestBaseModelDocs(unittest.TestCase):
     def test_module_docstring(self):
         """test module docstring
         """
-        for module in [models.base_model]:
+        for module in [models.engine.storage]:
             with self.subTest(module=module):
                 doc = module.__doc__
-                self.assertIsNot(doc, None, "base_model needs a docstring")
-                self.assertTrue(len(doc) >= 1, "base_model needs a docstring")
+                self.assertIsNot(
+                    doc, None,
+                    "storage needs a docstring")
+                self.assertTrue(
+                    len(doc) >= 1,
+                    "storage needs a docstring")
 
     def test_class_docstring(self):
         """test class docstring
         """
-        for path in [BaseModel, TestBaseModelDocs]:
+        for path in [Storage, TestStorage]:
             with self.subTest(cls=path):
                 doc = path.__doc__
-                self.assertIsNot(doc, None, "base_model needs a docstring")
-                self.assertTrue(len(doc) >= 1, "base_model needs a docstring")
+                self.assertIsNot(
+                    doc, None,
+                    "storage needs a docstring")
+                self.assertTrue(
+                    len(doc) >= 1,
+                    "storage needs a docstring")
 
     def test_func_docstrings(self):
         """_summary_

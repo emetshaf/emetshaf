@@ -1,43 +1,33 @@
+"""
+Flask route that returns json status response
+"""
 from api.v1.views import app_views
 from flask import jsonify, request
 from models import storage
-from models.user import User
+from flasgger.utils import swag_from
 
 
-@app_views.route('/status', methods=['GET'], strict_slashes=False)
+@app_views.route('/status', methods=['GET'])
+@swag_from('documentation/health/status.yml')
 def status():
-    return jsonify({"status": "OK"})
+    """
+    function for status route that returns the status
+    """
+    if request.method == 'GET':
+        resp = {"status": "OK"}
+        return jsonify(resp)
 
 
-@app_views.route('/stats', methods=['GET'], strict_slashes=False)
-def number_objects():
-    classes = [User]
-    names = ['users']
-
-    num_objs = {}
-    for i in range(len(classes)):
-        num_objs[names[i]] = storage.count(classes[i])
-
-    return jsonify(num_objs)
-
-
-@app_views.route('/signup', methods=['POST'], strict_slashes=False)
-def signup():
-    pass
-
-
-@app_views.route('/signin', methods=['POST'], strict_slashes=False)
-def signin():
-    _username = request.json['username']
-    _password = request.json['password']
-    if _username and _password:
-        return jsonify({
-            'message': 'Success'
-        })
-    else:
-        return jsonify({'message': 'fail'}).status_code(400)
-
-
-@app_views.route('/signout', methods=['POST'], strict_slashes=False)
-def signout():
-    pass
+@app_views.route('/stats', methods=['GET'])
+def stats():
+    """
+    function to return the count of all class objects
+    """
+    if request.method == 'GET':
+        response = {}
+        PLURALS = {
+            "User": "users"
+        }
+        for key, value in PLURALS.items():
+            response[value] = storage.count(key)
+        return jsonify(response)

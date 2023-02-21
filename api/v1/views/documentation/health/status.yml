@@ -1,0 +1,14 @@
+Status
+---
+tags:
+  - API Health
+
+responses:
+  200:
+    description:
+    schema:
+      type: array
+      items:
+        properties:
+          status:
+            type: string

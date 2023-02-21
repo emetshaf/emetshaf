@@ -1,70 +1,82 @@
+"""
+    Flask route that returns json response
+"""
 from api.v1.views import app_views
-from flasgger.utils import swag_from
 from flask import abort, jsonify, make_response, request
-from models.user import User
-from models import storage
+from models import storage, CNC, User
+from flasgger.utils import swag_from
 
 
-@app_views.route('users', methods=['GET'], strict_slashes=False)
-def get_users():
-    all_users = storage.all(User).values()
-    list_users = []
-    for user in all_users:
-        list_users.append(user.to_dict())
-    return jsonify(list_users)
+def check():
+    auth_header = request.headers.get('Authorization')
+    if auth_header:
+        try:
+            auth_token = auth_header.split(" ")[1]
+        except IndexError:
+            abort(400, 'Invalid token. Please register or login.')
+    else:
+        abort(400, 'Invalid token. Please register or login.')
+    resp = User.decode_auth_token(auth_token)
+    if 'Please log in again.' in resp:
+        abort(400, resp)
+
+
+@app_views.route('/users', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/users/all_users.yml', methods=['GET'])
+def all_users():
+    check()
+    all_users = storage.all('User')
+    all_users = [obj.to_json() for obj in all_users.values()]
+    return jsonify(all_users)
 
 
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
-def get_user(user_id):
-    user = storage.get(User, user_id)
-    if not user:
-        abort(404)
-    return jsonify(user.to_dict())
+@swag_from('documentation/users/get_user.yml', methods=['GET'])
+def post_user(user_id):
+    check()
+    user_obj = storage.get('User', user_id)
+    if user_obj is None:
+        abort(404, 'Not found')
+    return jsonify(user_obj.to_json())
+
+
+@app_views.route('/users/', methods=['POST'], strict_slashes=False)
+@swag_from('documentation/users/post_user.yml', methods=['POST'])
+def get_user():
+    check()
+    req_data = request.get_json()
+    if req_data is None:
+        abort(400, 'Not a JSON')
+    if req_data.get('username') is None:
+        abort(400, 'Missing username')
+    if req_data.get('password') is None:
+        abort(400, 'Missing password')
+    User = CNC.get('User')
+    new_object = User(**req_data)
+    new_object.save()
+    return jsonify(new_object.to_json()), 201
 
 
 @app_views.route('/users/<user_id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('documentation/users/delete_user.yml', methods=['DELETE'])
 def delete_user(user_id):
-    user = storage.get(User, user_id)
-    if not user:
-        abort(404)
-
-    storage.delete(user)
-    storage.save()
-
-    return make_response(jsonify({}), 200)
-
-
-@app_views.route('/users', methods=['POST'], strict_slashes=False)
-def post_user():
-    if not request.get_json():
-        abort(400, description="Not a JSON")
-
-    if 'username' not in request.get_json():
-        abort(400, description="Missing username")
-    if 'password' not in request.get_json():
-        abort(400, description="Missing password")
-
-    data = request.get_json()
-    instance = User(**data)
-    instance.save()
-    return make_response(jsonify(instance.to_dict()), 201)
+    check()
+    user_obj = storage.get('User', user_id)
+    if user_obj is None:
+        abort(404, 'Not found')
+    user_obj.delete()
+    del user_obj
+    return jsonify({}), 200
 
 
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
+@swag_from('documentation/users/put_user.yml', methods=['PUT'])
 def put_user(user_id):
-    user = storage.get(User, user_id)
-
-    if not user:
-        abort(404)
-
-    if not request.get_json():
-        abort(400, description="Not a JSON")
-
-    ignore = ['id', 'created_at', 'updated_at']
-
-    data = request.get_json()
-    for key, value in data.items():
-        if key not in ignore:
-            setattr(user, key, value)
-    storage.save()
-    return make_response(jsonify(user.to_dict()), 200)
+    user_obj = storage.get('User', user_id)
+    if user_obj is None:
+        abort(404, 'Not found')
+    req_data = request.get_json()
+    if req_data is None:
+        abort(400, 'Not a JSON')
+    user_obj.bm_update(req_data)
+    return jsonify(user_obj.to_json()), 200

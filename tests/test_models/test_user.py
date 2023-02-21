@@ -2,26 +2,28 @@
 """
 import inspect
 import models
-from models.base_model import BaseModel
+from models.user import User, BlacklistToken
 import pycodestyle
 import unittest
 
 
-class TestBaseModelDocs(unittest.TestCase):
+class TestUserDocs(unittest.TestCase):
     """_summary_
     """
     @classmethod
     def setUpClass(self):
         """_summary_
         """
-        self.all_funcs = inspect.getmembers(
-            BaseModel, inspect.isfunction)
+        self.all_user_funcs = inspect.getmembers(
+            User, inspect.isfunction)
+        self.all_block_funcs = inspect.getmembers(
+            BlacklistToken, inspect.isfunction)
 
     def test_pep(self):
         """_summary_
         """
-        for path in ['models/base_model.py',
-                     'tests/test_models/test_base_model.py']:
+        for path in ['models/user.py',
+                     'tests/test_models/test_user.py']:
             with self.subTest(path=path):
                 errors = pycodestyle.Checker(path).check_all()
                 self.assertEqual(errors, 0)
@@ -29,25 +31,25 @@ class TestBaseModelDocs(unittest.TestCase):
     def test_module_docstring(self):
         """test module docstring
         """
-        for module in [models.base_model]:
+        for module in [models.user]:
             with self.subTest(module=module):
                 doc = module.__doc__
-                self.assertIsNot(doc, None, "base_model needs a docstring")
-                self.assertTrue(len(doc) >= 1, "base_model needs a docstring")
+                self.assertIsNot(doc, None, "user needs a docstring")
+                self.assertTrue(len(doc) >= 1, "user needs a docstring")
 
     def test_class_docstring(self):
         """test class docstring
         """
-        for path in [BaseModel, TestBaseModelDocs]:
+        for path in [User, BlacklistToken, TestUserDocs]:
             with self.subTest(cls=path):
                 doc = path.__doc__
-                self.assertIsNot(doc, None, "base_model needs a docstring")
-                self.assertTrue(len(doc) >= 1, "base_model needs a docstring")
+                self.assertIsNot(doc, None, "user needs a docstring")
+                self.assertTrue(len(doc) >= 1, "user needs a docstring")
 
     def test_func_docstrings(self):
         """_summary_
         """
-        for clss in [self.all_funcs]:
+        for clss in [self.all_user_funcs, self.all_block_funcs]:
             for func in clss:
                 with self.subTest(function=func):
                     self.assertIsNot(

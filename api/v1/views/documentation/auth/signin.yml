@@ -1,0 +1,22 @@
+Signin
+---
+tags:
+  - Authentication
+parameters:
+  - name: username, password
+    in: body
+    required: true
+    requires:
+      - username:
+      - password:
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+
+responses:
+  400:
+    description: fail
+  201:
+    description: success
