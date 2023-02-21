@@ -40,8 +40,9 @@ class Storage:
             creates the engine self.__engine
         """
         self.__engine = create_engine(
-            'mysql+mysqldb://{}:{}@{}/{}'
-            .format(EMETSHAF_MYSQL_USER, EMETSHAF_MYSQL_PWD, EMETSHAF_MYSQL_HOST, EMETSHAF_MYSQL_DB)
+            'mysql+mysqldb://{}:{}@{}/{}'.format(
+                EMETSHAF_MYSQL_USER, EMETSHAF_MYSQL_PWD,
+                EMETSHAF_MYSQL_HOST, EMETSHAF_MYSQL_DB)
         )
         if EMETSHAF_ENV == 'test':
             Base.metadata.drop_all(self.__engine)
@@ -55,7 +56,8 @@ class Storage:
             a_query = self.__session.query(Storage.CNC[cls])
             for obj in a_query:
                 obj_ref = "{}.{}".format(type(obj).__name__, obj.id)
-                if cls == 'Book' and obj.authors and obj.book_files and obj.reviews:
+                if (cls == 'Book') and obj.authors\
+                        and obj.book_files and obj.reviews:
                     pass
                 obj_dict[obj_ref] = obj
             return obj_dict

@@ -11,7 +11,7 @@ from os import environ
 
 
 SECRET_KEY = environ.get('SECRET_KEY')
-UPLOAD_FOLDER = '/home/mubareksd/Development/projects/mubareksd/emetshaf/emetshaf_dev/uploads'
+UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 # Global Flask Application Variable: app

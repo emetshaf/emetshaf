@@ -1,7 +1,7 @@
 """_summary_
 """
 import inspect
-from api.v1 import app
+from web.app import app
 import pycodestyle
 import unittest
 
@@ -19,8 +19,8 @@ class TestAppDocs(unittest.TestCase):
     def test_pep(self):
         """_summary_
         """
-        for path in ['api/v1/app.py',
-                     'tests/test_api/test_v1/test_app.py']:
+        for path in ['web/app.py',
+                     'tests/test_web/test_app.py']:
             with self.subTest(path=path):
                 errors = pycodestyle.Checker(path).check_all()
                 self.assertEqual(errors, 0)

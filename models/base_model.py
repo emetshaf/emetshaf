@@ -74,7 +74,8 @@ class BaseModel:
             updates the basemodel and sets the correct attributes
         """
         IGNORE = [
-            'id', 'created_at', 'book_id', 'author_id', 'language_id', 'updated_at', 'username'
+            'id', 'created_at', 'book_id',
+            'author_id', 'language_id', 'updated_at', 'username'
         ]
         if attr_dict:
             updated_dict = {
@@ -104,7 +105,7 @@ class BaseModel:
         if 'authors' in self.__dict__:
             bm_dict['authors'] = [a.to_json() for a in self.authors]
         if 'book_files' in self.__dict__:
-            bm_dict['book_files'] = [l.to_json() for l in self.book_files]
+            bm_dict['book_files'] = [f.to_json()for f in self.book_files]
         if 'reviews' in self.__dict__:
             bm_dict['reviews'] = [r.to_json() for r in self.reviews]
         bm_dict.pop('_sa_instance_state', None)
