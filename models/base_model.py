@@ -104,8 +104,6 @@ class BaseModel:
         }
         if 'authors' in self.__dict__:
             bm_dict['authors'] = [a.to_json() for a in self.authors]
-        if 'book_files' in self.__dict__:
-            bm_dict['book_files'] = [f.to_json()for f in self.book_files]
         if 'reviews' in self.__dict__:
             bm_dict['reviews'] = [r.to_json() for r in self.reviews]
         bm_dict.pop('_sa_instance_state', None)

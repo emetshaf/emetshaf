@@ -369,9 +369,6 @@ class EMETSHAFCommand(cmd.Cmd):
     def do_Book(self, arg):
         self.__parse_exec('Book', arg)
 
-    def do_BookFile(self, arg):
-        self.__parse_exec('BookFile', arg)
-
     def do_Language(self, arg):
         self.__parse_exec('Language', arg)
 

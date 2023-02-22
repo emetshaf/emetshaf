@@ -17,20 +17,13 @@ class BookAuthor(Base):
                        primary_key=True)
 
 
-class BookFile(BaseModel, Base):
-    __tablename__ = 'book_files'
-    book_id = Column(String(60), ForeignKey('books.id'), nullable=False)
-    language_id = Column(String(60), ForeignKey('languages.id'), nullable=False)
-    cover = Column(String(500), nullable=False)
-    file = Column(String(500), nullable=False)
-    name = Column(String(128), nullable=False)
-    description = Column(String(500), nullable=False)
-
-
 class Book(BaseModel, Base):
     __tablename__ = 'books'
-    name = Column(String(128), nullable=False)
+    cover = Column(String(500), nullable=True)
+    title = Column(String(128), nullable=False)
+    language_id = Column(String(60), ForeignKey('languages.id'), nullable=True)
     authors = relationship('Author', secondary="book_author",
                            viewonly=False)
-    book_files = relationship('BookFile', backref='book', cascade='delete')
+    description = Column(String(500), nullable=True)
+    file = Column(String(500), nullable=True)
     reviews = relationship('Review', backref='book', cascade='delete')

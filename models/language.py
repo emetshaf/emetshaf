@@ -7,6 +7,6 @@ from sqlalchemy.orm import relationship
 class Language(BaseModel, Base):
     __tablename__ = 'languages'
     name = Column(String(128), nullable=False)
-    book_authors = relationship('BookFile',
-                                backref='languages',
-                                cascade='delete')
+    books = relationship('Book',
+                         backref='languages',
+                         cascade='delete')
