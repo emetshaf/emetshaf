@@ -26,7 +26,7 @@ app.url_map.strict_slashes = False
 
 # Cross-Origin Resource Sharing
 # cors = CORS(app)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+# cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 # app_views BluePrint defined in api.v1.views
 app.register_blueprint(app_views)

@@ -1,0 +1,66 @@
+version: '3.8'
+services:
+
+  api:
+    container_name: api
+    restart: always
+    env_file: .env_docker
+    build: .
+    networks:
+      - db_network
+      - web_network
+  web:
+    container_name: web
+    restart: always
+    build: ./web
+    networks:
+      - web_network
+    depends_on:
+      - api
+  
+  nginx:
+    container_name: nginx
+    restart: always
+    image: nginx:latest
+    ports:
+      - 5000:5000
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - api
+      - web
+    networks:
+      - db_network
+      - web_network
+  mysql:
+    container_name: mysql
+    restart: always
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - db_network
+  adminer:
+    container_name: adminer
+    restart: always
+    image: adminer:latest
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+    ports:
+      - 8080:8080
+    networks:
+      - db_network
+
+volumes:
+  mysql_data:
+
+networks:
+  db_network:
+    driver: bridge
+  web_network:
+    driver: bridge

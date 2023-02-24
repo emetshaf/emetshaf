@@ -24,7 +24,7 @@ def check():
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/users/all_users.yml', methods=['GET'])
 def all_users():
-    check()
+    # check()
     all_users = storage.all('User')
     all_users = [obj.to_json() for obj in all_users.values()]
     return jsonify(all_users)
