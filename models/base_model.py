@@ -75,7 +75,7 @@ class BaseModel:
         """
         IGNORE = [
             'id', 'created_at', 'book_id',
-            'author_id', 'language_id', 'updated_at', 'username'
+            'author_id', 'language_id', 'category_id', 'updated_at', 'username'
         ]
         if attr_dict:
             updated_dict = {

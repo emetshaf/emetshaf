@@ -33,7 +33,7 @@ def all_users():
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/users/get_user.yml', methods=['GET'])
 def post_user(user_id):
-    check()
+    # check()
     user_obj = storage.get('User', user_id)
     if user_obj is None:
         abort(404, 'Not found')
@@ -43,7 +43,7 @@ def post_user(user_id):
 @app_views.route('/users/', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/users/post_user.yml', methods=['POST'])
 def get_user():
-    check()
+    # check()
     req_data = request.get_json()
     if req_data is None:
         abort(400, 'Not a JSON')
@@ -60,12 +60,11 @@ def get_user():
 @app_views.route('/users/<user_id>', methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/users/delete_user.yml', methods=['DELETE'])
 def delete_user(user_id):
-    check()
+    # check()
     user_obj = storage.get('User', user_id)
     if user_obj is None:
         abort(404, 'Not found')
     user_obj.delete()
-    del user_obj
     return jsonify({}), 200
 
 

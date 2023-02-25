@@ -18,8 +18,12 @@ def post_Author():
     req_data = request.get_json()
     if req_data is None:
         abort(400, 'Not a JSON')
-    if req_data.get('name') is None:
-        abort(400, 'Missing name')
+    if req_data.get('first_name') is None:
+        abort(400, 'Missing first name')
+    if req_data.get('middle_name') is None:
+        abort(400, 'Missing middle name')
+    if req_data.get('last_name') is None:
+        abort(400, 'Missing last name')
     Author = CNC['Author']
     new_obj = Author(**req_data)
     new_obj.save()
@@ -41,8 +45,8 @@ def delete_author(author_id):
     author_obj = storage.get('Author', author_id)
     if author_obj is None:
         abort(404, 'Not found')
-    del author_obj
-    return jsonify({})
+    author_obj.delete()
+    return jsonify({}), 200
 
 
 @app_views.route('/authors/<author_id>', methods=['PUT'])
@@ -55,4 +59,4 @@ def put_author(author_id):
     if req_data is None:
         abort(400, 'Not a JSON')
     author_obj.bm_update(req_data)
-    return jsonify(author_obj.to_json())
+    return jsonify(author_obj.to_json()), 200

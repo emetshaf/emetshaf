@@ -41,8 +41,8 @@ def delete_language(language_id):
     language_obj = storage.get('Language', language_id)
     if language_obj is None:
         abort(404, 'Not found')
-    del language_obj
-    return jsonify({})
+    language_obj.delete()
+    return jsonify({}), 200
 
 
 @app_views.route('/languages/<language_id>', methods=['PUT'])
