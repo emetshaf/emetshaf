@@ -35,6 +35,18 @@ def get_category(category_id):
     return jsonify(category_obj.to_json())
 
 
+@app_views.route('/categories/<category_id>/subcategories', methods=['GET'], strict_slashes=False)
+def get_subcategories(category_id):
+    """ Retrieves a category object """
+    category_obj = storage.get('Category', category_id)
+    if category_obj is None:
+        abort(404, 'Not found')
+    all_subcategories = storage.all('SubCategory')
+    category_subcategories = [obj.to_json() for obj in all_subcategories.values()
+                        if obj.category_id == category_id]
+    return jsonify(category_subcategories)
+
+
 @app_views.route('/categories/<category_id>', methods=['DELETE'], strict_slashes=False)
 def delete_category(category_id):
     """ Retrieves a category object """

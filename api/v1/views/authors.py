@@ -39,6 +39,18 @@ def get_author(author_id):
     return jsonify(author_obj.to_json())
 
 
+@app_views.route('/authors/<author_id>/books', methods=['GET'])
+def get_books(author_id):
+    """ Retrieves a author object """
+    author_obj = storage.get('Author', author_id)
+    if author_obj is None:
+        abort(404, 'Not found')
+    all_books = storage.all('Book')
+    author_books = [obj.to_json() for obj in all_books.values()
+                    if obj.author_id == author_id]
+    return jsonify(author_books)
+
+
 @app_views.route('/authors/<author_id>', methods=['DELETE'])
 def delete_author(author_id):
     """ Retrieves a author object """
