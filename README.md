@@ -10,11 +10,13 @@
 ## Features
 
 - [ ] Authentication
+- [ ] AudioBook Management
 - [x] Author Management
 - [ ] Book Management
-- [ ] AudioBook Management
 - [x] Category Management
+- [ ] Feedback management
 - [x] Language Management
+- [ ] Narrator Management
 - [x] Review Management
 - [x] User Management
 
