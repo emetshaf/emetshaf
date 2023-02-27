@@ -1,6 +1,58 @@
-# ![icon](https://github.com/emetshaf/media/blob/main/images/app-icon.png?raw=true)EMetshaf
+#
+
+![EMetshaf](https://github.com/emetshaf/media/raw/main/images/gh-banner.png?raw=true)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+![Python](https://img.shields.io/badge/python-v3.9+-blue.svg)
+![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
+[![GitHub Issues](https://img.shields.io/github/issues/emetshaf/emetshaf)](https://github.com/emetshaf/emetshaf/issues)
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+[![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://opensource.org/license/gpl-3-0/)
 
 ## Features
+
+- [ ] Authentication
+- [x] Author Management
+- [ ] Book Management
+- [ ] AudioBook Management
+- [x] Category Management
+- [x] Language Management
+- [x] Review Management
+- [x] User Management
+
+## Setup
+
+- clones the project
+
+  `git clone https://github.com/emetshaf/emetshaf`
+
+- cd into the project
+
+  `cd emetshaf`
+
+- create virtual environment
+
+  `python3 venv env`
+
+- activate the environment
+
+  `source env/bin/activate`
+
+- install the required python packages
+
+  `pip install -r requirements.txt`
+
+- start the api application
+
+  `tmux 'gunicorn --config gunicorn-cfg.py api.v1.app:app'`
+
+- start the web application
+
+  `tmux 'gunicorn --config web/gunicorn-cfg.py web.app:app'`
+
+### Docker
+
+`docker compose up`
 
 ## Issues, Feature Requests and Contributing
 
