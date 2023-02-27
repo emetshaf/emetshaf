@@ -44,11 +44,11 @@
 
 - start the api application
 
-  `tmux 'gunicorn --config gunicorn-cfg.py api.v1.app:app'`
+  `tmux new-session -d 'gunicorn --config gunicorn-cfg.py api.v1.app:app'`
 
 - start the web application
 
-  `tmux 'gunicorn --config web/gunicorn-cfg.py web.app:app'`
+  `tmux new-session -d 'gunicorn --config web/gunicorn-cfg.py web.app:app'`
 
 ### Docker
 
