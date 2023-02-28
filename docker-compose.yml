@@ -30,7 +30,6 @@ services:
       - api
       - web
     networks:
-      - db_network
       - web_network
   mysql:
     container_name: mysql

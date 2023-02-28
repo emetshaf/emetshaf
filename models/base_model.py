@@ -106,6 +106,10 @@ class BaseModel:
             bm_dict['authors'] = [a.to_json() for a in self.authors]
         if 'reviews' in self.__dict__:
             bm_dict['reviews'] = [r.to_json() for r in self.reviews]
+        if 'libraries' in self.__dict__:
+            bm_dict['libraries'] = [l.to_json() for l in self.libraries]
+        if 'favorites' in self.__dict__:
+            bm_dict['favorites'] = [f.to_json() for f in self.favorites]
         bm_dict.pop('_sa_instance_state', None)
         bm_dict.update({
             '__class__': obj_class

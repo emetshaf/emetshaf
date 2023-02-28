@@ -40,6 +40,42 @@ def post_user(user_id):
     return jsonify(user_obj.to_json())
 
 
+@app_views.route('/users/<user_id>/libraries', methods=['GET'], strict_slashes=False)
+def get_user_libraries(user_id):
+    user_obj = storage.get('User', user_id)
+    if user_obj is None:
+        abort(404, 'Not found')
+    return jsonify(user_obj.to_json())
+
+
+@app_views.route('/users/<user_id>/favorites', methods=['GET'], strict_slashes=False)
+def get_user_favorites(user_id):
+    user_obj = storage.get('User', user_id)
+    if user_obj is None:
+        abort(404, 'Not found')
+    return jsonify(user_obj.to_json())
+
+
+@app_views.route('/users/libraries/', methods=['GET'], strict_slashes=False)
+def get_libraries(auth_token):
+    resp = User.decode_auth_token(auth_token)
+    user_id = resp.get('data').get('id')
+    user_obj = storage.get('User', user_id)
+    if user_obj is None:
+        abort(404, 'Not found')
+    return jsonify(user_obj.to_json())
+
+
+@app_views.route('/users/favorites/', methods=['GET'], strict_slashes=False)
+def get_favorites(auth_token):
+    resp = User.decode_auth_token(auth_token)
+    user_id = resp.get('data').get('id')
+    user_obj = storage.get('User', user_id)
+    if user_obj is None:
+        abort(404, 'Not found')
+    return jsonify(user_obj.to_json())
+
+
 @app_views.route('/users/', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/users/post_user.yml', methods=['POST'])
 def get_user():

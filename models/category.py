@@ -10,7 +10,7 @@ class Category(BaseModel, Base):
     __tablename__ = 'categories'
     name = Column(String(128), nullable=False)
     subcategories = relationship('SubCategory',
-                                 backref='categories',
+                                 backref='category',
                                  cascade='delete')
 
 

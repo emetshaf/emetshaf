@@ -4,7 +4,7 @@ from flasgger import swag_from
 from models import storage, CNC
 
 
-@app_views.route('/languages', methods=['GET'])
+@app_views.route('/languages', methods=['GET'], strict_slashes=False)
 def all_languages():
     """ Retrieves the list of all languages """
     all_languages = storage.all('Language')
@@ -12,7 +12,7 @@ def all_languages():
     return jsonify(all_languages)
 
 
-@app_views.route('/languages', methods=['POST'])
+@app_views.route('/languages', methods=['POST'], strict_slashes=False)
 def post_language():
     """ Creates a language """
     req_data = request.get_json()
@@ -26,7 +26,7 @@ def post_language():
     return jsonify(new_obj.to_json()), 201
 
 
-@app_views.route('/languages/<language_id>', methods=['GET'])
+@app_views.route('/languages/<language_id>', methods=['GET'], strict_slashes=False)
 def get_language(language_id):
     """ Retrieves a language object """
     language_obj = storage.get('Language', language_id)
@@ -35,7 +35,7 @@ def get_language(language_id):
     return jsonify(language_obj.to_json())
 
 
-@app_views.route('/languages/<language_id>', methods=['DELETE'])
+@app_views.route('/languages/<language_id>', methods=['DELETE'], strict_slashes=False)
 def delete_language(language_id):
     """ Retrieves a language object """
     language_obj = storage.get('Language', language_id)
@@ -45,7 +45,7 @@ def delete_language(language_id):
     return jsonify({}), 200
 
 
-@app_views.route('/languages/<language_id>', methods=['PUT'])
+@app_views.route('/languages/<language_id>', methods=['PUT'], strict_slashes=False)
 def put_language(language_id):
     """ Retrieves a language object """
     language_obj = storage.get('Language', language_id)

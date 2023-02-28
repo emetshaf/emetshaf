@@ -6,7 +6,7 @@ from os import environ
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
-from models import author, base_model, category, book, language, review, user
+from models import audiobook, author, base_model, book, category, feedback, language, narrator, review, user
 
 EMETSHAF_MYSQL_USER = environ.get('EMETSHAF_MYSQL_USER')
 EMETSHAF_MYSQL_PWD = environ.get('EMETSHAF_MYSQL_PWD')
@@ -20,10 +20,13 @@ class Storage:
         handles long term storage of all class instances
     """
     CNC = {
+        'AudioBook': audiobook.AudioBook,
         'Author': author.Author,
         'Book': book.Book,
         'Category': category.Category,
+        'Feedback': feedback.Feedback,
         'Language': language.Language,
+        'Narrator': narrator.Narrator,
         'Review': review.Review,
         'SubCategory': category.SubCategory,
         'User': user.User,
@@ -58,6 +61,8 @@ class Storage:
             for obj in a_query:
                 obj_ref = "{}.{}".format(type(obj).__name__, obj.id)
                 if (cls == 'Book') and obj.authors and obj.reviews:
+                    pass
+                if (cls == 'User') and obj.libraries and obj.favorites:
                     pass
                 obj_dict[obj_ref] = obj
             return obj_dict

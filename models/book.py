@@ -27,3 +27,5 @@ class Book(BaseModel, Base):
     description = Column(String(500), nullable=True)
     file = Column(String(500), nullable=True)
     reviews = relationship('Review', backref='book', cascade='delete')
+    library = relationship('Library', backref="books", cascade='delete')
+    favorites = relationship('Favorite', backref="books", cascade='delete')

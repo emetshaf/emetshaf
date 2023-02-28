@@ -7,9 +7,27 @@ import jwt
 import models
 import os
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, ForeignKey, String, DateTime
 from sqlalchemy.orm import relationship
 from uuid import uuid4
+
+
+class Library(Base):
+    __tablename__ = 'libraries'
+    metadata = Base.metadata
+    user_id = Column(String(60), ForeignKey('users.id'),
+                     nullable=False, primary_key=True)
+    book_id = Column(String(60), ForeignKey('books.id'),
+                     nullable=False, primary_key=True)
+
+
+class Favorite(Base):
+    __tablename__ = 'favorites'
+    metadata = Base.metadata
+    user_id = Column(String(60), ForeignKey('users.id'),
+                     nullable=False, primary_key=True)
+    book_id = Column(String(60), ForeignKey('books.id'),
+                     nullable=False, primary_key=True)
 
 
 class User(BaseModel, Base):
@@ -19,6 +37,8 @@ class User(BaseModel, Base):
     __tablename__ = 'users'
     username = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
+    libraries = relationship('Book', secondary="libraries", viewonly=False)
+    favorites = relationship('Book', secondary="favorites", viewonly=False)
     reviews = relationship('Review', backref='user', cascade='delete')
 
     def __init__(self, *args, **kwargs):
