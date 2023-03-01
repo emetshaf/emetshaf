@@ -7,5 +7,3 @@ CREATE USER IF NOT EXISTS 'emetshaf_test'@'localhost' IDENTIFIED BY 'emetshaf_te
 GRANT ALL PRIVILEGES ON emetshaf_test_db.* TO 'emetshaf_test'@'localhost';
 GRANT SELECT ON performance_schema.* TO 'emetshaf_test'@'localhost';
 FLUSH PRIVILEGES;
-
-USE emetshaf_test_db;
