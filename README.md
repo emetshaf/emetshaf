@@ -1,10 +1,8 @@
-#
+| Issues                                                                                                                  | Pull Requests                                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| [![GitHub Issues](https://img.shields.io/github/issues/emetshaf/emetshaf)](https://github.com/emetshaf/emetshaf/issues) | [![GitHub Pull requests](https://img.shields.io/github/issues-pr/emetshaf/emetshaf)](https://github.com/emetshaf/emetshaf/issues-pr) |
 
-![EMetshaf](https://github.com/emetshaf/media/raw/main/images/gh-banner.png?raw=true)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![GitHub Issues](https://img.shields.io/github/issues/emetshaf/emetshaf)](https://github.com/emetshaf/emetshaf/issues)
-[![GitHub Pull requests](https://img.shields.io/github/issues-pr/emetshaf/emetshaf)](https://github.com/emetshaf/emetshaf/issues-pr)
+# ![app icon](https://github.com/emetshaf/media/raw/main/images/app-icon.png) EMetshaf
 
 ## Features
 
@@ -23,35 +21,51 @@
 
 - clones the project
 
-  `git clone https://github.com/emetshaf/emetshaf`
+  ```shell
+  git clone https://github.com/emetshaf/emetshaf
+  ```
 
 - cd into the project
 
-  `cd emetshaf`
+  ```shell
+  cd emetshaf
+  ```
 
 - create virtual environment
 
-  `python3 venv env`
+  ```shell
+  python3 venv env
+  ```
 
 - activate the environment
 
-  `source env/bin/activate`
+  ```shell
+  source env/bin/activate
+  ```
 
 - install the required python packages
 
-  `pip install -r requirements.txt`
+  ```shell
+  pip install -r requirements.txt
+  ```
 
 - start the api application
 
-  `tmux new-session -d 'gunicorn --config gunicorn-cfg.py run:api'`
+  ```shell
+  tmux new-session -d 'gunicorn --config gunicorn-cfg.py run:api'
+  ```
 
 - start the web application
 
-  `tmux new-session -d 'gunicorn --config web/gunicorn-cfg.py run:web'`
+  ```shell
+  tmux new-session -d 'gunicorn --config web/gunicorn-cfg.py run:web'
+  ```
 
 ### Docker
 
-`docker compose up`
+```shell
+docker compose up
+```
 
 ## Issues, Feature Requests and Contributing
 
@@ -71,7 +85,8 @@ See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
 ## License
 
-    Copyright 2023 Mubarek Juhar
+```text
+    Copyright 2023 EMetshaf
 
     Licensed under the GNU General Public License, Version 3.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -84,3 +99,4 @@ See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+```
