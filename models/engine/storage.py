@@ -6,7 +6,9 @@ from os import environ
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
-from models import audiobook, author, base_model, book, category, feedback, language, narrator, review, user
+from models import (
+    audiobook, author, base_model, book, category,
+    feedback, language, narrator, review, user)
 
 load_dotenv()
 

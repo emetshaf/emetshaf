@@ -14,8 +14,8 @@ import logging
 
 load_dotenv()
 
-logging.basicConfig(level=logging.DEBUG, filename='api.log',
-                    filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, filename='api.log', filemode='w',
+                    format='%(name)s - %(levelname)s - %(message)s')
 
 
 SECRET_KEY = environ.get('SECRET_KEY')
