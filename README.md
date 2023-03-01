@@ -4,6 +4,8 @@
 
 # ![app icon](https://github.com/emetshaf/media/raw/main/images/app-icon.png) EMetshaf
 
+EMetshaf is an E-Book and Audio Book Store
+
 ## Features
 
 - [ ] Authentication
@@ -68,6 +70,18 @@ docker compose up
 ```
 
 ## Issues, Feature Requests and Contributing
+
+<details><summary>Issues</summary>
+
+</details>
+
+<details><summary>Bugs</summary>
+
+</details>
+
+<details><summary>Feature Requests</summary>
+
+</details>
 
 <details><summary>Contributing</summary>
 
