@@ -2,6 +2,7 @@
 User Class from Models Module
 """
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 import hashlib
 import jwt
 import models
@@ -10,6 +11,9 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, ForeignKey, String, DateTime
 from sqlalchemy.orm import relationship
 from uuid import uuid4
+
+
+load_dotenv()
 
 
 class Library(Base):

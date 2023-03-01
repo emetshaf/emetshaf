@@ -42,3 +42,13 @@ def create_feedback():
     new_feedback = CNC['Feedback'](**feedback)
     new_feedback.save()
     return make_response(jsonify(new_feedback.to_json()), 201)
+
+
+@app_views.route('/feedbacks/<feedback_id>', methods=['DELETE'], strict_slashes=False)
+def delete_feedback(feedback_id):
+    """ Retrieves a feedback object """
+    feedback_obj = storage.get('Feedback', feedback_id)
+    if feedback_obj is None:
+        abort(404, 'Not found')
+    feedback_obj.delete()
+    return jsonify({}), 200

@@ -1,12 +1,14 @@
 """
 Database engine
 """
-
+from dotenv import load_dotenv
 from os import environ
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 from models import audiobook, author, base_model, book, category, feedback, language, narrator, review, user
+
+load_dotenv()
 
 EMETSHAF_MYSQL_USER = environ.get('EMETSHAF_MYSQL_USER')
 EMETSHAF_MYSQL_PWD = environ.get('EMETSHAF_MYSQL_PWD')

@@ -25,11 +25,9 @@ def create_book():
         abort(400, 'Not a JSON')
     if req_data.get('title') is None:
         abort(400, 'Missing title')
-    if req_data.get('author_id') is None:
-        abort(400, 'Missing author_id')
     if req_data.get('description') is None:
         abort(400, 'Missing description')
-    if req_data.get('language') is None:
+    if req_data.get('language_id') is None:
         abort(400, 'Missing language')
     Book = CNC.get('Book')
     new_book = Book(**req_data)
@@ -75,6 +73,16 @@ def get_book(book_id):
     if book is None:
         abort(404)
     return jsonify(book.to_json())
+
+
+@app_views.route('/books/<book_id>', methods=['DELETE'], strict_slashes=False)
+def delete_book(book_id):
+    """ Retrieves a book object """
+    book_obj = storage.get('Book', book_id)
+    if book_obj is None:
+        abort(404, 'Not found')
+    book_obj.delete()
+    return jsonify({}), 200
 
 
 @app_views.route('/books/<book_id>/authors', methods=['GET'], strict_slashes=False)

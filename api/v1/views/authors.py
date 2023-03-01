@@ -20,8 +20,6 @@ def post_Author():
         abort(400, 'Not a JSON')
     if req_data.get('first_name') is None:
         abort(400, 'Missing first name')
-    if req_data.get('middle_name') is None:
-        abort(400, 'Missing middle name')
     if req_data.get('last_name') is None:
         abort(400, 'Missing last name')
     Author = CNC['Author']

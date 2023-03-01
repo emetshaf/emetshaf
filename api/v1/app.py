@@ -2,12 +2,20 @@
 Flask App that integrates with AirBnB static HTML Template
 """
 from api.v1.views import app_views, auth_blueprint
+from dotenv import load_dotenv
 from flasgger import Swagger
 from flask import Flask, jsonify, make_response, render_template, url_for
 from flask_cors import CORS, cross_origin
 from models import storage
 from werkzeug.exceptions import HTTPException
 from os import environ
+import logging
+
+
+load_dotenv()
+
+logging.basicConfig(level=logging.DEBUG, filename='api.log',
+                    filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 
 SECRET_KEY = environ.get('SECRET_KEY')
@@ -19,6 +27,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SWAGGER'] = {'title': 'EMetshaf Restful API', 'uiversion': 3}
+
 swagger = Swagger(app)
 
 # global strict slashes

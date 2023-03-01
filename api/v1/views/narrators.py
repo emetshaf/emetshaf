@@ -34,3 +34,13 @@ def create_narrator():
     narrator = CNC['Narrator'](**data)
     narrator.save()
     return make_response(jsonify(narrator.to_json()), 201)
+
+
+@app_views.route('/narrators/<narrator_id>', methods=['DELETE'], strict_slashes=False)
+def delete_narrator(narrator_id):
+    """ Retrieves a narrator object """
+    narrator_obj = storage.get('Narrator', narrator_id)
+    if narrator_obj is None:
+        abort(404, 'Not found')
+    narrator_obj.delete()
+    return jsonify({}), 200
