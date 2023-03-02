@@ -11,4 +11,4 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # guniconf
-CMD ["gunicorn", "--config", "gunicorn-cfg.py", "api.v1.app:app"]
+CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:api"]
