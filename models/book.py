@@ -1,6 +1,6 @@
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, ForeignKey, String
+from sqlalchemy import Column, ForeignKey, String, Text
 from sqlalchemy.orm import relationship
 
 
@@ -24,7 +24,7 @@ class Book(BaseModel, Base):
     language_id = Column(String(60), ForeignKey('languages.id'), nullable=True)
     authors = relationship('Author', secondary="book_author",
                            viewonly=False)
-    description = Column(String(500), nullable=True)
+    description = Column(Text, nullable=True)
     file = Column(String(500), nullable=True)
     reviews = relationship('Review', backref='book', cascade='delete')
     library = relationship('Library', backref="books", cascade='delete')

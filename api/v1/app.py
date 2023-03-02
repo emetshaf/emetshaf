@@ -4,7 +4,8 @@ Flask App that integrates with AirBnB static HTML Template
 from api.v1.views import app_views, auth_blueprint
 from dotenv import load_dotenv
 from flasgger import Swagger
-from flask import Flask, jsonify, make_response, render_template, url_for, request
+from flask import (
+    Flask, jsonify, make_response, render_template, url_for, request)
 from flask_cors import CORS, cross_origin
 from models import storage
 from werkzeug.exceptions import HTTPException
@@ -29,10 +30,14 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SWAGGER'] = {'title': 'EMetshaf Restful API', 'uiversion': 3}
 
 swagger_config = Swagger.DEFAULT_CONFIG
-swagger_config['swagger_ui_bundle_js'] = '//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js'
-swagger_config['swagger_ui_standalone_preset_js'] = '//unpkg.com/swagger-ui-dist@3/swagger-ui-standalone-preset.js'
-swagger_config['jquery_js'] = '//unpkg.com/jquery@2.2.4/dist/jquery.min.js'
-swagger_config['swagger_ui_css'] = '//unpkg.com/swagger-ui-dist@3/swagger-ui.css'
+swagger_config['swagger_ui_bundle_js'] = (
+    '//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js')
+swagger_config['swagger_ui_standalone_preset_js'] = (
+    '//unpkg.com/swagger-ui-dist@3/swagger-ui-standalone-preset.js')
+swagger_config['jquery_js'] = (
+    '//unpkg.com/jquery@2.2.4/dist/jquery.min.js')
+swagger_config['swagger_ui_css'] = (
+    '//unpkg.com/swagger-ui-dist@3/swagger-ui.css')
 swagger = Swagger(app, config=swagger_config)
 
 # global strict slashes
@@ -110,4 +115,4 @@ if __name__ == "__main__":
     # initializes global error handling
     setup_global_errors()
     # start Flask app
-    app.run(host='0.0.0.0', port=5000, threaded=True)
+    app.run(host='0.0.0.0', port=5005, threaded=True)
