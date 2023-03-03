@@ -128,9 +128,9 @@ EMetshaf is an E-Book and Audio Book Store
 
 👤 **Mubarek Seid Juhar**
 
-- GitHub: [@githubhandle](https://github.com/mubareksd)
-- Twitter: [@twitterhandle](https://twitter.com/mubareksd)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/mubareksd)
+- GitHub: [@mubareksd](https://github.com/mubareksd)
+- Twitter: [@mubareksd](https://twitter.com/mubareksd)
+- LinkedIn: [Mubarek Juhar](https://linkedin.com/in/mubareksd)
 
 ## 🤝 Contributing <a name="contributing"></a>
 
