@@ -1,12 +1,30 @@
-| Issues                                                                                                                  | Pull Requests                                                                                                                        |
-| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| [![GitHub Issues](https://img.shields.io/github/issues/emetshaf/emetshaf)](https://github.com/emetshaf/emetshaf/issues) | [![GitHub Pull requests](https://img.shields.io/github/issues-pr/emetshaf/emetshaf)](https://github.com/emetshaf/emetshaf/issues-pr) |
+![EMetshaf](https://github.com/emetshaf/media/raw/main/images/gh-banner.png?raw=true)
 
-# ![app icon](https://github.com/emetshaf/media/raw/main/images/app-icon.png) EMetshaf
+# 📗 Table of Contents
+
+- [📖 EMetshaf ](#emetshaf)
+  - [🛠 Built With](#built-with)
+    - [Features](#features)
+  - [🚀 Live Demo](#live-demo)
+  - [💻 Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Usage](#usage)
+  - [Screenshots](#screenshots)
+  - [👥 Author](#author)
+  - [🤝 Contributing](#contributing)
+  - [❓ FAQ](#faq)
+  - [📝 License ](#license)
+
+# 📖 EMetshaf <a name="emetshaf"></a>
 
 EMetshaf is an E-Book and Audio Book Store
 
-## Features
+## 🛠 Built With <a name="built-with"></a>
+
+- Python
+
+### Features <a name="features"></a>
 
 - [ ] Authentication
 - [x] AudioBook Management
@@ -19,57 +37,81 @@ EMetshaf is an E-Book and Audio Book Store
 - [x] Review Management
 - [x] User Management
 
-## Setup
+## 🚀 Live Demo <a name="live-demo"></a>
+
+[Live Demo Link](https://mubareksd.tech)
+
+## 💻 Getting Started <a name="getting-started"></a>
+
+### Prerequisites <a name="prerequisites"></a>
+
+- Python 3.9+
+
+  - ubuntu/Debian
+
+    ```sh
+    sudo apt install python3
+    ```
+
+  - Arch/Manjaro
+
+    ```sh
+    sudo pacman -S python3
+    ```
+
+  - Redhat/Fedora
+
+    ```sh
+    sudo yum install python3
+    ```
+
+### Setup <a name="setup"></a>
 
 - clones the project
 
-  ```shell
+  ```sh
   git clone https://github.com/emetshaf/emetshaf
   ```
 
 - cd into the project
 
-  ```shell
+  ```sh
   cd emetshaf
   ```
 
 - create virtual environment
 
-  ```shell
+  ```sh
   python3 venv env
   ```
 
 - activate the environment
 
-  ```shell
+  ```sh
   source env/bin/activate
   ```
 
 - install the required python packages
 
-  ```shell
+  ```sh
   pip install -r requirements.txt
   ```
 
+### Usage <a name="usage"></a>
+
 - start the api application
 
-  ```shell
+  ```sh
   tmux new-session -d 'gunicorn --config gunicorn-cfg.py run:api'
   ```
 
 - start the web application
 
-  ```shell
+  ```sh
   tmux new-session -d 'gunicorn --config web/gunicorn-cfg.py run:web'
   ```
 
-### Docker
-
-```shell
-docker compose up
-```
-
-## Screenshots
+## Screenshots <a name="screenshots"></a>
 
 | Page No | Page Name             | Screenshot                                                        |
 | ------- | --------------------- | ----------------------------------------------------------------- |
@@ -82,35 +124,33 @@ docker compose up
 | 07      | Admin Create Language | ![admin_create_language](./screenshots/admin_create_language.png) |
 | 08      | Admin Users           | ![admin_users](./screenshots/admin_users.png)                     |
 
-## Issues, Feature Requests and Contributing
+## 👥 Author <a name="author"></a>
 
-<details><summary>Issues</summary>
+👤 **Mubarek Seid Juhar**
 
-</details>
+- GitHub: [@githubhandle](https://github.com/mubareksd)
+- Twitter: [@twitterhandle](https://twitter.com/mubareksd)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/mubareksd)
 
-<details><summary>Bugs</summary>
+## 🤝 Contributing <a name="contributing"></a>
 
-</details>
+Contributions, issues, and feature requests are welcome!
 
-<details><summary>Feature Requests</summary>
+- Issues Bugs Feature Requests
 
-</details>
+  check out [issues page](../../issues/).
 
-<details><summary>Contributing</summary>
+- Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
+  check out [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-</details>
+- Code of Conduct
 
-<details><summary>Code of Conduct</summary>
+  check out [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
-See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
+## ❓ FAQ <a name="faq"></a>
 
-</details>
-
-## FAQ
-
-## License
+## 📝 License <a name="license"></a>
 
 ```text
     Copyright 2023 EMetshaf
