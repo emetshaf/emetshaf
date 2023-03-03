@@ -27,6 +27,7 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
 app.config['SWAGGER'] = {'title': 'EMetshaf Restful API', 'uiversion': 3}
 
 swagger_config = Swagger.DEFAULT_CONFIG
@@ -71,6 +72,11 @@ def handle_404(exception):
     description = exception.description
     message = {'error': description}
     return make_response(jsonify(message), code)
+
+
+@app.errorhandler(413)
+def request_entity_too_large(error):
+    return 'File Too Large', 413
 
 
 @app.errorhandler(400)
