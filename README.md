@@ -69,6 +69,17 @@ EMetshaf is an E-Book and Audio Book Store
 docker compose up
 ```
 
+## Screenshots
+
+| Page Name       | Screenshot |
+| --------------- | ---------- |
+| Admin Dashboard | ![admin_dashboard](./screenshots/admin_dashboard.png)           |
+| Admin Authors | ![admin_authors](./screenshots/admin_authors.png) |
+| Admin Create Author | ![admin_create_author](./screenshots/admin_create_author.png) |
+| Admin Books | ![admin_authors](./screenshots/admin_books.png) |
+| Admin Languages | ![admin_authors](./screenshots/admin_languages.png) |
+| Admin Users | ![admin_authors](./screenshots/admin_users.png) |
+
 ## Issues, Feature Requests and Contributing
 
 <details><summary>Issues</summary>
