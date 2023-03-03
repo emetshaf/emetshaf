@@ -14,7 +14,7 @@ def all_audiobooks():
 
 @app_views.route('/audiobooks', methods=['POST'], strict_slashes=False)
 def post_AudioBook():
-    """ Creates an Author """
+    """ Creates an AudioBook """
     req_data = request.get_json()
     if req_data is None:
         abort(400, 'Not a JSON')
@@ -26,6 +26,15 @@ def post_AudioBook():
     return jsonify(new_obj.to_json()), 201
 
 
+@app_views.route('/audiobooks/<audiobook_id>', methods=['GET'], strict_slashes=False)
+def get_audiobook(audiobook_id):
+    """ Retrieves a audiobook object """
+    audiobook_obj = storage.get('AudioBook', audiobook_id)
+    if audiobook_obj is None:
+        abort(404, 'Not found')
+    return jsonify(audiobook_obj.to_json())
+
+
 @app_views.route('/audiobooks/<audiobook_id>', methods=['DELETE'], strict_slashes=False)
 def delete_audiobook(audiobook_id):
     """ Retrieves a audiobook object """
@@ -34,3 +43,16 @@ def delete_audiobook(audiobook_id):
         abort(404, 'Not found')
     audiobook_obj.delete()
     return jsonify({}), 200
+
+
+@app_views.route('/audiobooks/<audiobook_id>', methods=['PUT'], strict_slashes=False)
+def put_audiobook(audiobook_id):
+    """ Retrieves a audiobook object """
+    audiobook_obj = storage.get('AudioBook', audiobook_id)
+    if audiobook_obj is None:
+        abort(404, 'Not found')
+    req_data = request.get_json()
+    if req_data is None:
+        abort(400, 'Not a JSON')
+    audiobook_obj.bm_update(req_data)
+    return jsonify(audiobook_obj.to_json()), 200
