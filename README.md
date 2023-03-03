@@ -9,13 +9,13 @@ EMetshaf is an E-Book and Audio Book Store
 ## Features
 
 - [ ] Authentication
-- [ ] AudioBook Management
+- [X] AudioBook Management
 - [x] Author Management
-- [ ] Book Management
+- [X] Book Management
 - [x] Category Management
-- [ ] Feedback management
+- [X] Feedback management
 - [x] Language Management
-- [ ] Narrator Management
+- [X] Narrator Management
 - [x] Review Management
 - [x] User Management
 
