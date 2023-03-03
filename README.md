@@ -4,14 +4,14 @@
 
 - [📖 EMetshaf ](#emetshaf)
   - [🛠 Built With](#built-with)
-    - [Features](#features)
+    - [🔭 Features](#features)
   - [🚀 Live Demo](#live-demo)
   - [💻 Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Usage](#usage)
   - [Screenshots](#screenshots)
-  - [👥 Author](#author)
+  - [👥 Authors](#authors)
   - [🤝 Contributing](#contributing)
   - [❓ FAQ](#faq)
   - [📝 License ](#license)
@@ -22,9 +22,12 @@ EMetshaf is an E-Book and Audio Book Store
 
 ## 🛠 Built With <a name="built-with"></a>
 
-- Python
+- API
+  - Python / Flask
+- WEB
+  - Python / Flask
 
-### Features <a name="features"></a>
+### 🔭 Features <a name="features"></a>
 
 - [ ] Authentication
 - [x] AudioBook Management
@@ -82,7 +85,7 @@ EMetshaf is an E-Book and Audio Book Store
 - create virtual environment
 
   ```sh
-  python3 venv env
+  python3 -m venv env
   ```
 
 - activate the environment
@@ -124,7 +127,7 @@ EMetshaf is an E-Book and Audio Book Store
 | 07      | Admin Create Language | ![admin_create_language](./screenshots/admin_create_language.png) |
 | 08      | Admin Users           | ![admin_users](./screenshots/admin_users.png)                     |
 
-## 👥 Author <a name="author"></a>
+## 👥 Authors <a name="authors"></a>
 
 👤 **Mubarek Seid Juhar**
 
