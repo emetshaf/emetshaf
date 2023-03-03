@@ -116,16 +116,13 @@ EMetshaf is an E-Book and Audio Book Store
 
 ## Screenshots <a name="screenshots"></a>
 
-| Page No | Page Name             | Screenshot                                                        |
-| ------- | --------------------- | ----------------------------------------------------------------- |
-| 01      | Admin Dashboard       | ![admin_dashboard](./screenshots/admin_dashboard.png)             |
-| 02      | Admin Authors         | ![admin_authors](./screenshots/admin_authors.png)                 |
-| 03      | Admin Create Author   | ![admin_create_author](./screenshots/admin_create_author.png)     |
-| 04      | Admin Edit Author     | ![admin_edit_author](./screenshots/admin_edit_author.png)         |
-| 05      | Admin Books           | ![admin_books](./screenshots/admin_books.png)                     |
-| 06      | Admin Languages       | ![admin_languages](./screenshots/admin_languages.png)             |
-| 07      | Admin Create Language | ![admin_create_language](./screenshots/admin_create_language.png) |
-| 08      | Admin Users           | ![admin_users](./screenshots/admin_users.png)                     |
+| Page Name             | Index                                                 | Create                                                            | Edit                                                                   |
+| --------------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |                                                                       |
+| Admin Dashboard       | ![admin_dashboard](./screenshots/admin_dashboard.png) |                                                                   |                                                                       |
+| Admin Authors         | ![admin_authors](./screenshots/admin_authors.png)     | ![admin_create_author](./screenshots/admin_create_author.png)     | ![admin_edit_author](./screenshots/admin_edit_author.png)  |
+| Admin Books           | ![admin_books](./screenshots/admin_books.png)         |                                                                   |                                                                       |
+| Admin Languages       | ![admin_languages](./screenshots/admin_languages.png) | ![admin_create_language](./screenshots/admin_create_language.png) |                                                                       |
+| Admin Users           | ![admin_users](./screenshots/admin_users.png)         |                                                                   |                                                                       |
 
 ## 👥 Authors <a name="authors"></a>
 
