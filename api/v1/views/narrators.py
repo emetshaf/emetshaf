@@ -44,3 +44,16 @@ def delete_narrator(narrator_id):
         abort(404, 'Not found')
     narrator_obj.delete()
     return jsonify({}), 200
+
+
+@app_views.route('/narrators/<narrator_id>', methods=['PUT'], strict_slashes=False)
+def put_narrator(narrator_id):
+    """ Retrieves a narrator object """
+    narrator_obj = storage.get('Narrator', narrator_id)
+    if narrator_obj is None:
+        abort(404, 'Not found')
+    req_data = request.get_json()
+    if req_data is None:
+        abort(400, 'Not a JSON')
+    narrator_obj.bm_update(req_data)
+    return jsonify(narrator_obj.to_json()), 200
