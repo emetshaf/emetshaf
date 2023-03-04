@@ -116,18 +116,18 @@ EMetshaf is an E-Book and Audio Book Store
 
 ## Screenshots <a name="screenshots"></a>
 
-| Page Name        | Index                                                   | Create                                                              | Edit                                                          |
-| ---------------- | ------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Admin Dashboard  | ![admin_dashboard](./screenshots/admin_dashboard.png)   |                                                                     |                                                               |
-| Admin AudioBooks | ![admin_audiobooks](./screenshots/admin_audiobooks.png) | ![admin_create_audiobook](./screenshots/admin_create_audiobook.png) | ![admin_edit_audiobook](./)                                   |
-| Admin Authors    | ![admin_authors](./screenshots/admin_authors.png)       | ![admin_create_author](./screenshots/admin_create_author.png)       | ![admin_edit_author](./screenshots/admin_edit_author.png)     |
-| Admin Books      | ![admin_books](./screenshots/admin_books.png)           | ![admin_create_book](./screenshots/admin_create_book.png)           | ![admin_edit_book](./)                                        |
-| Admin Categories | ![admin_categories](./screenshots/admin_categories.png) | ![admin_create_category](./screenshots/admin_create_category.png)   | ![admin_edit_category](./)                                    |
-| Admin Feedbacks  | ![admin_feedbacks](./screenshots/admin_feedbacks.png)   | ![admin_create_feedback](./screenshots/admin_create_feedback.png)   | ![admin_edit_feedback](./)                                    |
-| Admin Languages  | ![admin_languages](./screenshots/admin_languages.png)   | ![admin_create_language](./screenshots/admin_create_language.png)   | ![admin_edit_language](./screenshots/admin_edit_language.png) |
-| Admin Narrators  | ![admin_narrators](./screenshots/admin_narrators.png)   | ![admin_create_narrator](./screenshots/admin_create_narrator.png)   | ![admin_edit_narrator](./)                                    |
-| Admin Reviews    | ![admin_reviews](./screenshots/admin_reviews.png)       | ![admin_create_review](./screenshots/admin_create_review.png)       | ![admin_edit_review](./)                                      |
-| Admin Users      | ![admin_users](./screenshots/admin_users.png)           | ![admin_create_user](./screenshots/admin_create_user.png)           | ![admin_edit_user](./)                                        |
+| Page Name        | Index                                                   | Create                                                              | Edit                                                              |
+| ---------------- | ------------------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Admin Dashboard  | ![admin_dashboard](./screenshots/admin_dashboard.png)   |                                                                     |                                                                   |
+| Admin AudioBooks | ![admin_audiobooks](./screenshots/admin_audiobooks.png) | ![admin_create_audiobook](./screenshots/admin_create_audiobook.png) | ![admin_edit_audiobook](././screenshots/admin_edit_audiobook.png) |
+| Admin Authors    | ![admin_authors](./screenshots/admin_authors.png)       | ![admin_create_author](./screenshots/admin_create_author.png)       | ![admin_edit_author](./screenshots/admin_edit_author.png)         |
+| Admin Books      | ![admin_books](./screenshots/admin_books.png)           | ![admin_create_book](./screenshots/admin_create_book.png)           | ![admin_edit_book](././screenshots/admin_edit_book.png)           |
+| Admin Categories | ![admin_categories](./screenshots/admin_categories.png) | ![admin_create_category](./screenshots/admin_create_category.png)   | ![admin_edit_category](./screenshots/admin_edit_category.png)     |
+| Admin Feedbacks  | ![admin_feedbacks](./screenshots/admin_feedbacks.png)   | ![admin_create_feedback](./screenshots/admin_create_feedback.png)   | ![admin_edit_feedback](./screenshots/admin_edit_feedback.png)     |
+| Admin Languages  | ![admin_languages](./screenshots/admin_languages.png)   | ![admin_create_language](./screenshots/admin_create_language.png)   | ![admin_edit_language](./screenshots/admin_edit_language.png)     |
+| Admin Narrators  | ![admin_narrators](./screenshots/admin_narrators.png)   | ![admin_create_narrator](./screenshots/admin_create_narrator.png)   | ![admin_edit_narrator](./screenshots/admin_edit_narrator.png)     |
+| Admin Reviews    | ![admin_reviews](./screenshots/admin_reviews.png)       | ![admin_create_review](./screenshots/admin_create_review.png)       | ![admin_edit_review](./screenshots/admin_edit_review.png)         |
+| Admin Users      | ![admin_users](./screenshots/admin_users.png)           | ![admin_create_user](./screenshots/admin_create_user.png)           | ![admin_edit_user](./screenshots/admin_edit_user.png)             |
 
 ## 👥 Authors <a name="authors"></a>
 
