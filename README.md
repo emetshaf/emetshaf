@@ -49,23 +49,27 @@ EMetshaf is an E-Book and Audio Book Store
 ### Prerequisites <a name="prerequisites"></a>
 
 - Python 3.9+
+- MariaDB
 
   - ubuntu/Debian
 
     ```sh
     sudo apt install python3
+    sudo apt install mariadb-server
     ```
 
   - Arch/Manjaro
 
     ```sh
     sudo pacman -S python3
+    sudo pacman -S mariadb
     ```
 
   - Redhat/Fedora
 
     ```sh
     sudo yum install python3
+    sudo yum install mariadb-server
     ```
 
 ### Setup <a name="setup"></a>
@@ -98,6 +102,54 @@ EMetshaf is an E-Book and Audio Book Store
 
   ```sh
   pip install -r requirements.txt
+  ```
+
+- create a database
+
+  ```sh
+  mysql -u root -p
+  ```
+
+  ```sql
+  CREATE DATABASE db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci;
+  ```
+
+- create a user
+
+  ```sql
+  CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'db_user_pwd';
+  ```
+
+- grant db_user all privileges on db_name
+
+  ```sql
+  GRANT ALL PRIVILEGES ON db_name.* TO 'db_user'@'localhost';
+  ```
+
+- flush privileges
+
+  ```sql
+  FLUSH PRIVILEGES;
+  ```
+
+- create a .env file
+
+  ```sh
+  touch .env
+  ```
+  ```sh
+  touch .env
+  ```
+
+- add the following to the .env file
+
+  ```sh
+  SECRET_KEY=your_secret_key
+  EMETSHAF_ENV=dev
+  EMETSHAF_MYSQL_HOST=localhost
+  EMETSHAF_MYSQL_USER=db_user
+  EMETSHAF_MYSQL_PWD=db_user_pwd
+  EMETSHAF_MYSQL_DB=db_name
   ```
 
 ### Usage <a name="usage"></a>
