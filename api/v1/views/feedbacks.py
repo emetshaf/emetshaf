@@ -52,3 +52,16 @@ def delete_feedback(feedback_id):
         abort(404, 'Not found')
     feedback_obj.delete()
     return jsonify({}), 200
+
+
+@app_views.route('/feedbacks/<feedback_id>', methods=['PUT'], strict_slashes=False)
+def put_feedback(feedback_id):
+    """ Retrieves a feedback object """
+    feedback_obj = storage.get('Feedback', feedback_id)
+    if feedback_obj is None:
+        abort(404, 'Not found')
+    req_data = request.get_json()
+    if req_data is None:
+        abort(400, 'Not a JSON')
+    feedback_obj.bm_update(req_data)
+    return jsonify(feedback_obj.to_json()), 200
