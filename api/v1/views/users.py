@@ -21,6 +21,19 @@ def check():
         abort(400, resp)
 
 
+@app_views.route('/users/<user_id>/books/<book_id>', methods=['POST'], strict_slashes=False)
+def add_book(user_id, book_id):
+    user_obj = storage.get('User', user_id)
+    book_obj = storage.get('Book', book_id)
+    if user_obj is None:
+        abort(404, 'Not found')
+    if book_obj is None:
+        abort(404, 'Not found')
+    user_obj.libraries.append(book_obj)
+    user_obj.save()
+    return jsonify(user_obj.to_json()), 201
+
+
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/users/all_users.yml', methods=['GET'])
 def all_users():
