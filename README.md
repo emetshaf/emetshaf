@@ -50,12 +50,16 @@ EMetshaf is an E-Book and Audio Book Store
 
 - Python 3.9+
 - MariaDB
+- Git
+- Tmux
 
   - ubuntu/Debian
 
     ```sh
     sudo apt install python3
     sudo apt install mariadb-server
+    sudo apt install git
+    sudo apt install tmux
     ```
 
   - Arch/Manjaro
@@ -63,6 +67,8 @@ EMetshaf is an E-Book and Audio Book Store
     ```sh
     sudo pacman -S python3
     sudo pacman -S mariadb
+    sudo pacman -S git
+    sudo pacman -S tmux
     ```
 
   - Redhat/Fedora
@@ -70,6 +76,25 @@ EMetshaf is an E-Book and Audio Book Store
     ```sh
     sudo yum install python3
     sudo yum install mariadb-server
+    sudo yum install git
+    sudo yum install tmux
+    ```
+
+  - MacOS
+
+    ```sh
+    brew install python3
+    brew install mariadb
+    brew install git
+    brew install tmux
+    ```
+
+  - Windows
+
+    ```sh
+    choco install python3
+    choco install mariadb
+    choco install git
     ```
 
 ### Setup <a name="setup"></a>
@@ -156,16 +181,18 @@ EMetshaf is an E-Book and Audio Book Store
 ### Usage <a name="usage"></a>
 
 - start the api application
+  - Linux/MacOS
 
-  ```sh
-  tmux new-session -d 'gunicorn --config gunicorn-cfg.py run:api'
-  ```
+    ```sh
+    tmux new-session -d 'gunicorn --config gunicorn-cfg.py run:api'
+    ```
 
 - start the web application
+  - Linux/MacOS
 
-  ```sh
-  tmux new-session -d 'gunicorn --config web/gunicorn-cfg.py run:web'
-  ```
+    ```sh
+    tmux new-session -d 'gunicorn --config web/gunicorn-cfg.py run:web'
+    ```
 
 ## Screenshots <a name="screenshots"></a>
 
