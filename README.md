@@ -29,7 +29,7 @@ EMetshaf is an E-Book and Audio Book Store
 
 ### 🔭 Features <a name="features"></a>
 
-- [ ] Authentication
+- [x] Authentication
 - [x] AudioBook Management
 - [x] Author Management
 - [x] Book Management
@@ -137,6 +137,7 @@ EMetshaf is an E-Book and Audio Book Store
   ```sh
   touch .env
   ```
+
   ```sh
   touch .env
   ```
@@ -186,6 +187,7 @@ EMetshaf is an E-Book and Audio Book Store
 👤 **Mubarek Seid Juhar**
 
 - GitHub: [@mubareksd](https://github.com/mubareksd)
+- GitLab: [@mubareksd](https://gitlab.com/mubareksd)
 - Twitter: [@mubareksd](https://twitter.com/mubareksd)
 - LinkedIn: [Mubarek Juhar](https://linkedin.com/in/mubareksd)
 
