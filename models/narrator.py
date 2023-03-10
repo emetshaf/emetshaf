@@ -9,3 +9,5 @@ class Narrator(BaseModel, Base):
     first_name = Column(String(128), nullable=False)
     middle_name = Column(String(128), nullable=True)
     last_name = Column(String(128), nullable=False)
+    audiobooks = relationship(
+        'AudioBook', backref='narrator', cascade='delete')

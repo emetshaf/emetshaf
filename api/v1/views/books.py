@@ -50,6 +50,21 @@ def add_author(book_id, author_id):
     return jsonify(book.to_json()), 201
 
 
+@app_views.route('/books/<book_id>/categories/<category_id>', methods=['POST'], strict_slashes=False)
+def add_category(book_id, category_id):
+    """books route to handle http method for requested books by categories
+    """
+    book = storage.get('Book', book_id)
+    category = storage.get('SubCategory', category_id)
+    if book is None:
+        abort(404)
+    if category is None:
+        abort(404)
+    book.categories.append(category)
+    book.save()
+    return jsonify(book.to_json()), 201
+
+
 @app_views.route('/books/<book_id>/authors/<author_id>', methods=['DELETE'], strict_slashes=False)
 def delete_author_by_bood_id(book_id, author_id):
     """books route to handle http method for requested books by city

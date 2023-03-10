@@ -19,3 +19,6 @@ class SubCategory(BaseModel, Base):
     name = Column(String(128), nullable=False)
     category_id = Column(String(60), ForeignKey(
         'categories.id'), nullable=True)
+    book_categories = relationship('BookCategory',
+                                   backref='subcategories',
+                                   cascade='delete')

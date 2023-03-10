@@ -106,6 +106,8 @@ class BaseModel:
             bm_dict['authors'] = [a.to_json() for a in self.authors]
         if 'reviews' in self.__dict__:
             bm_dict['reviews'] = [r.to_json() for r in self.reviews]
+        if 'audiobooks' in self.__dict__:
+            bm_dict['audiobooks'] = [a.to_json() for a in self.audiobooks]
         if 'libraries' in self.__dict__:
             bm_dict['libraries'] = [lib.to_json() for lib in self.libraries]
         if 'favorites' in self.__dict__:
