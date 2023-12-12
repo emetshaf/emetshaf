@@ -1,5 +1,5 @@
 autopep8==2.0.1
-Flasgger==0.9.5
+Flasgger==0.9.7.1
 Flask==3.0.0
 Flask-Cors==4.0.0
 gunicorn==21.2.0
