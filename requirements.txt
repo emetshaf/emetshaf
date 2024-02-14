@@ -10,5 +10,5 @@ pycodestyle==2.11.1
 PyJWT==2.8.0
 python-dotenv==1.0.1
 requests==2.31.0
-SQLAlchemy==2.0.25
+SQLAlchemy==2.0.27
 werkzeug==3.0.1
